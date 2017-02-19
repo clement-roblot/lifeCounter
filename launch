@@ -1,0 +1,16 @@
+
+= To launch the app =
+source lifeCounterEnv/bin/activate
+
+
+
+
+
+= To install the app =
+
+pip install virtualenv
+virtualenv --python=python3 lifeCounterEnv
+
+source lifeCounterEnv/bin/activate
+pip install django==1.10
+
