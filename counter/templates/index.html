@@ -36,16 +36,37 @@
     <div class="columns"><h4 class="text-center">Find out how many days you have left to put to good use : </h4></div>
 </div>
 
-<form>
+<!--<form>
 <div class="row align-middle">
     <div class="columns medium-6"><label>Birth date : <input id="birthDate" type="text" name="birthday"></label></div>
     <div class="columns medium-6"><label>Email : <input type="email" name="email"></label></div>
 </div>
 <div class="row align-spaced">
-    <div class="columns medium-4 text-center"><input type="submit" class="button expanded" value="Get my number"></div>
+    <div class="columns medium-4 text-center"><input type="submit" class="button expanded" value="Get my count"></div>
 </div>
 
+</form>-->
+
+
+
+
+
+<form action="newUser/" method="post">{% csrf_token %}
+    <div class="row align-middle">
+        {% for field in newUserForm %}
+        <div class="columns medium-6">
+            {{ field.errors }}
+            {{ field.label_tag }}{{ field }}
+        </div>
+        {% endfor %}
+    </div>
+    <div class="row align-spaced">
+        <div class="columns medium-4 text-center"><input type="submit" class="button expanded" value="Get my count"></div>
+    </div>
 </form>
+
+
+
 
 
 {% endblock %}
@@ -53,7 +74,7 @@
 
 {% block scriptBlock %}
 
-    $('#birthDate').fdatepicker({
+    $('#id_birthdayDate').fdatepicker({
         initialDate: '02-12-1989',
         format: 'mm-dd-yyyy',
         // keyboardNavigation: false,
@@ -72,7 +93,7 @@
             speed: 2000,
             refreshInterval: 50,
             onComplete: function(value) {
-                console.debug(this);
+                //console.debug(this);
             }
         });
     });
