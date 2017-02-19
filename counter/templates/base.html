@@ -29,6 +29,11 @@
           </ul>
         </div>
       </div>
+{% if messages %}
+  {% for message in messages %}
+  <div{% if message.tags %} class="callout {{ message.tags }}"{% endif %}>{{ message }}</div>
+  {% endfor %}
+{% endif %}
 
       <div>
           {% block bodyBlock %}{% endblock %}
