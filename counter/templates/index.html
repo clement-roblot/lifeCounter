@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+
+{% block headBlock %}
+{% load static %}
+
+<script src="{% static 'foundation-datepicker/js/foundation-datepicker.min.js' %}"></script>
+<script src="{% static 'foundation-datepicker/js/locales/foundation-datepicker.en-GB.js' %}"></script>
+
+<link rel="stylesheet" href="{% static 'foundation-datepicker/css/foundation-datepicker.min.css' %}">
+<link href="//cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css" rel="stylesheet">
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet">
+
+{% endblock %}
+
+
+
+{% block bodyBlock %}
+
+
+
+<div class="row align-middle">
+    <div class="columns"><h1 class="text-center">27375</h1></div>
+</div>
+
+<div class="row align-middle">
+    <div class="columns"><h3 class="text-center">Number of days in a human life</h3></div>
+</div>
+
+
+
+<div class="row align-middle">
+    <div class="columns"><h4 class="text-center">Find out how many days you have left to put to good use : </h4></div>
+</div>
+
+<form>
+<div class="row align-middle">
+    <div class="columns medium-6"><label>Birth date : <input id="birthDate" type="text" name="birthday"></label></div>
+    <div class="columns medium-6"><label>Email : <input type="email" name="email"></label></div>
+</div>
+<div class="row align-spaced">
+    <div class="columns medium-4 text-center"><input type="submit" class="button expanded" value="Get my number"></div>
+</div>
+
+</form>
+
+
+{% endblock %}
+
+
+{% block scriptBlock %}
+
+    $('#birthDate').fdatepicker({
+        initialDate: '02-12-1989',
+        format: 'mm-dd-yyyy',
+        // keyboardNavigation: false,
+        disableDblClickSelection: true,
+        leftArrow:'<<',
+        rightArrow:'>>',
+        closeIcon:'X',
+        closeButton: true
+        // autoShow: false
+    });
+
+{% endblock %}
+
+

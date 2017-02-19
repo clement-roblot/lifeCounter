@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>{% block title %}Life counter{% endblock %}</title>
+
+        {% load staticfiles %}
+
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.0/css/foundation-flex.min.css">
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.0/js/foundation.js"></script>
+
+        {% block headBlock %}{% endblock %}
+    </head>
+
+    <body>
+
+      <div class="top-bar">
+        <div class="top-bar-left">
+          <ul class="dropdown menu" data-dropdown-menu>
+            <li class="menu-text">Life counter</li>
+          </ul>
+        </div>
+        <div class="top-bar-right">
+          <ul class="menu">
+            <li><a href="#">Log in</a></li>
+            <li><button type="button" class="button">Sign up</button></li>
+          </ul>
+        </div>
+      </div>
+
+      <div>
+          {% block bodyBlock %}{% endblock %}
+      </div>
+
+    </body>
+
+
+
+    <script>
+
+        $(document).ready(function() {
+
+            $(document).foundation();
+        })
+
+
+        {% block scriptBlock %}{% endblock %}
+
+    </script>
+
+
+</html>
