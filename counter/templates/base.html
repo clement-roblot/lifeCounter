@@ -23,12 +23,23 @@
           </ul>
         </div>
         <div class="top-bar-right">
-          <ul class="menu">
+          <ul class="dropdown menu" data-dropdown-menu>
             <!-- <li><a href="#">Log in</a></li> -->
+            {% if user.is_authenticated %}
+            <li>
+              {{ user.username }}
+              <ul class="menu vertical">
+                <li><a href="#">Profile</a></li>
+                <li><a href="signOut">Sign out</a></li>
+              </ul>
+            </li>
+            {% else %}
             <li><button type="button" class="button">Login</button></li>
+            {% endif %}
           </ul>
         </div>
       </div>
+
 {% if messages %}
   {% for message in messages %}
   <div{% if message.tags %} class="callout {{ message.tags }}"{% endif %}>{{ message }}</div>

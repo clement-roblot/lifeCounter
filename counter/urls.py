@@ -6,6 +6,9 @@ from . import views
 urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^newUser', views.newUser, name='newUser'),
-    url('^resetPassword/$', auth_views.password_reset),
-    url('^resetPasswordDone/$', auth_views.password_reset_done),
+    url(r'^signOut', views.logUserOut, name='logUserOut'),
+
+
+    #url('^resetPassword/$', auth_views.password_reset),
+    #url('^resetPasswordDone/$', auth_views.password_reset_done),
 ]

@@ -5,7 +5,7 @@ from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext, loader
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 
 
@@ -63,4 +63,9 @@ def newUser(request):
     else:
         return redirect('index')
 
+    return redirect('index')
+
+
+def logUserOut(request):
+    logout(request)
     return redirect('index')
