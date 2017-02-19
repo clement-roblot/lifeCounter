@@ -5,7 +5,7 @@ from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext, loader
 from django.contrib.auth.models import User
-
+from django.contrib.auth import authenticate, login
 
 from .forms import NewUserForm
 
@@ -51,6 +51,9 @@ def newUser(request):
 
             newUser = User.objects.create_user(userInfo.get('email'), userInfo.get('email'), newPassword)
             newUser.save()
+
+            #messages.info(request, "Thanks for registering. You are now logged in.")
+            login(request, newUser)
 
             return redirect('index')
         else:
