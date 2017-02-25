@@ -80,12 +80,10 @@ def newUser(request):
 
             newPassword = ''.join(random.SystemRandom().choice(string.ascii_lowercase + string.ascii_uppercase + string.digits) for _ in range(50))
 
-
-            print(newPassword)
-
             newUser = User.objects.create_user(userInfo.get('email'), userInfo.get('email'), newPassword)
             newUser.save()
-
+            # This need to be done before the sending of the mail as it seams to unvalide the tocken
+            login(request, newUser)
 
             c = {
                 'email': newUser.email,
@@ -107,11 +105,7 @@ def newUser(request):
             send_mail(subject, email, "karlito@martobre.fr" , [newUser.email], fail_silently=False)
 
             messages.success(request, 'An email has been sent to ' + newUser.email +". Please check its inbox to continue reseting password.")
-
-
-
             messages.success(request, "Thanks for registering. You are now logged in.")
-            login(request, newUser)
 
             return redirect('index')
         else:

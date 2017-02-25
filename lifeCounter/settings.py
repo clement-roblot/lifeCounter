@@ -16,6 +16,7 @@ import os
 from django.contrib import messages
 
 
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -118,4 +119,12 @@ MESSAGE_TAGS = {
     messages.ERROR: 'alert',
 }
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # During development only
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # During development only
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'karlito139@gmail.com'
+EMAIL_HOST_PASSWORD = open(os.path.expanduser('./lifeCounter/emailServerSecret')).read().strip()
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'admin@lifecounter.me'
+SERVER_EMAIL = 'admin@lifecounter.me'
