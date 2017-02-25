@@ -34,7 +34,20 @@
               </ul>
             </li>
             {% else %}
-            <li><button type="button" class="button">Login</button></li>
+            <li><button type="button" class="button" data-open="loginModal">Login</button></li>
+            <div class="tiny reveal" id="loginModal" data-reveal>
+              <h1>Login</h1>
+
+              <form action="logIn/" method="post">{% csrf_token %}
+                  {{ loginUserForm }}
+                  <input type="submit" class="button expanded" value="Login">
+              </form>
+
+
+              <button class="close-button" data-close aria-label="Close modal" type="button">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
             {% endif %}
           </ul>
         </div>

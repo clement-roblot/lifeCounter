@@ -12,7 +12,7 @@ from django.utils.encoding import force_bytes
 from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import send_mail
 
-from .forms import NewUserForm
+from .forms import NewUserForm, LoginForm
 
 
 def index(request):
@@ -22,9 +22,11 @@ def index(request):
         template = loader.get_template('index.html')
 
         newUserForm = NewUserForm()
+        loginUserForm = LoginForm()
 
         context = {
-           'newUserForm'  : newUserForm,
+           'newUserForm'   : newUserForm,
+           'loginUserForm' : loginUserForm,
         }
 
         #return HttpResponse(template.render(context))
@@ -40,6 +42,31 @@ def index(request):
         # })
 
         #return HttpResponse(template.render())
+
+
+def logIn(request):
+    # if this is a POST request we need to process the form data
+    if request.method == 'POST':
+
+        newUserForm = LoginForm(request.POST)
+        if newUserForm.is_valid():
+
+            loginInfo = newUserForm.cleaned_data
+
+            user = authenticate(username=loginInfo.get('email'), password=loginInfo.get('password'))
+
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+                    return redirect('index')
+
+    else:
+        return redirect('index')
+
+    return redirect('index')
+
+
+
 
 
 def newUser(request):
@@ -84,7 +111,7 @@ def newUser(request):
 
 
             messages.success(request, "Thanks for registering. You are now logged in.")
-            #login(request, newUser)
+            login(request, newUser)
 
             return redirect('index')
         else:
