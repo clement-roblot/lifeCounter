@@ -13,18 +13,20 @@
 
 <script src="{% static 'script.js' %}"></script>
 
+<script src="{% static 'counter/jquery.incremental-counter.min.js' %}"></script>
+
+
 {% endblock %}
 
 
 
 {% block bodyBlock %}
 
-
-
+<br>
 <div class="row align-middle">
-    <!-- <div class="columns"><h1 class="text-center">27375</h1></div> -->
-    <div class="columns"><h1 class="text-center"><span class="averageDaysToLive"></span></h1></div>
+    <div class="columns"><div class="incremental-counter text-center" data-value="27375"></div></div>
 </div>
+<br>
 
 <div class="row align-middle">
     <div class="columns"><h3 class="text-center">Number of days in a human life</h3></div>
@@ -87,7 +89,7 @@
     });
 
     jQuery(function($) {
-        $('.averageDaysToLive').countTo({
+        /*$('.averageDaysToLive').countTo({
             from: 10000,
             to: 27375,
             speed: 2000,
@@ -95,7 +97,10 @@
             onComplete: function(value) {
                 //console.debug(this);
             }
-        });
+        });*/
+
+        $(".incremental-counter").incrementalCounter();
+
     });
 
 {% endblock %}

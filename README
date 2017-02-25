@@ -4,6 +4,8 @@ CDN used to fetch the libraries : https://cdnjs.com/libraries/foundation
 
 Datepicker used : https://github.com/najlepsiwebdesigner/foundation-datepicker
 
+Days counter : http://www.jqueryscript.net/time-clock/Stylish-Incremental-Counter-Plugin-with-jQuery.html
+
 Reset password tutorial : 
 - https://simpleisbetterthancomplex.com/tutorial/2016/09/19/how-to-create-password-reset-view.html
 - http://ruddra.com/2015/09/18/implementation-of-forgot-reset-password-feature-in-django/
