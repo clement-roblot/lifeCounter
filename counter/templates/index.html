@@ -26,39 +26,42 @@
 
 
 
-<div>
-    <div class="row align-middle">
-        <div class="columns"><div class="incremental-counter text-center" data-value="27375"></div></div>
-    </div>
-    <br>
+<div class="row align-middle" style="height:500px;">
+    <div class="columns">
+        <div class="row align-middle">
+            <div class="columns"><div class="incremental-counter text-center" data-value="27375"></div></div>
+        </div>
+        <br>
 
-    <div class="row align-middle">
-        <div class="columns"><h3 class="text-center">Number of days in a human life</h3></div>
-    </div>
+        <div class="row align-middle">
+            <div class="columns"><h3 class="text-center">Number of days in a human life</h3></div>
+        </div>
 
-
-
-    <div class="row align-middle">
-        <div class="columns"><h4 class="text-center">Find out how many days you have left to put to good use : </h4></div>
+        <div class="row align-middle">
+            <div class="columns"><h4 class="text-center">Find out how many days you have left to put to good use : </h4></div>
+        </div>
     </div>
 </div>
 
 
 
-
-<form action="newUser/" method="post">{% csrf_token %}
-    <div class="row align-middle">
-        {% for field in newUserForm %}
-        <div class="columns medium-6">
-            {{ field.errors }}
-            {{ field.label_tag }}{{ field }}
-        </div>
-        {% endfor %}
+<div class="row align-middle" style="height:500px;">
+    <div class="columns">
+        <form action="newUser/" method="post">{% csrf_token %}
+            <div class="row align-middle">
+                {% for field in newUserForm %}
+                <div class="columns medium-6">
+                    {{ field.errors }}
+                    {{ field.label_tag }}{{ field }}
+                </div>
+                {% endfor %}
+            </div>
+            <div class="row align-spaced">
+                <div class="columns medium-4 text-center"><input type="submit" class="button expanded" value="Get my count"></div>
+            </div>
+        </form>
     </div>
-    <div class="row align-spaced">
-        <div class="columns medium-4 text-center"><input type="submit" class="button expanded" value="Get my count"></div>
-    </div>
-</form>
+</div>
 
 
 
