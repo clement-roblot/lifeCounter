@@ -18,8 +18,7 @@ from .forms import NewUserForm, LoginForm
 def index(request):
 
 
-    #if not request.user.is_authenticated():
-        template = loader.get_template('index.html')
+    if not request.user.is_authenticated():
 
         newUserForm = NewUserForm()
         loginUserForm = LoginForm()
@@ -29,19 +28,15 @@ def index(request):
            'loginUserForm' : loginUserForm,
         }
 
-        #return HttpResponse(template.render(context))
         return render(request, 'index.html', context)
 
-    #else:
-    #    template = loader.get_template('index.html')
+    else:
 
-        #testList = Test.objects.filter(user=request.user.id).order_by('title')
+        context = {
 
-        # context = RequestContext(request, {
-        # #    'testList'  : testList,
-        # })
+        }
 
-        #return HttpResponse(template.render())
+        return render(request, 'profil.html', context)
 
 
 def logIn(request):

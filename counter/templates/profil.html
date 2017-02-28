@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+
+{% block headBlock %}
+{% load static %}
+
+<script src="{% static 'foundation-datepicker/js/foundation-datepicker.min.js' %}"></script>
+<script src="{% static 'foundation-datepicker/js/locales/foundation-datepicker.en-GB.js' %}"></script>
+
+<link rel="stylesheet" href="{% static 'foundation-datepicker/css/foundation-datepicker.min.css' %}">
+<link href="//cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css" rel="stylesheet">
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet">
+
+<script src="{% static 'script.js' %}"></script>
+
+<script src="{% static 'counter/jquery.incremental-counter.min.js' %}"></script>
+
+
+{% endblock %}
+
+
+
+{% block bodyBlock %}
+
+<br>
+
+
+
+<div class="row align-middle" style="height:500px;">
+    <div class="columns">
+        <div class="row align-middle">
+            <div class="columns"><div class="incremental-counter text-center" data-value="27375"></div></div>
+        </div>
+        <br>
+
+        <div class="row align-middle">
+            <div class="columns"><h3 class="text-center">Your count</h3></div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+{% endblock %}
+
+
+{% block scriptBlock %}
+
+    $('#id_birthdayDate').fdatepicker({
+        initialDate: '02-12-1989',
+        format: 'mm-dd-yyyy',
+        // keyboardNavigation: false,
+        disableDblClickSelection: true,
+        leftArrow:'<<',
+        rightArrow:'>>',
+        closeIcon:'X',
+        closeButton: true
+        // autoShow: false
+    });
+
+    jQuery(function($) {
+
+        $(".incremental-counter").incrementalCounter();
+    });
+
+{% endblock %}
+
+
