@@ -13,6 +13,18 @@ from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import send_mail
 
 from .forms import NewUserForm, LoginForm
+from .models import Life, Preferences
+
+
+
+def getUserCount(user):
+
+    #life = Life.objects.get(user=user)
+
+    #print(user.email)
+
+    return 35000
+
 
 
 def index(request):
@@ -32,8 +44,10 @@ def index(request):
 
     else:
 
-        context = {
+        userCount = getUserCount(request.user)
 
+        context = {
+            'personnalCount'    : userCount,
         }
 
         return render(request, 'profil.html', context)
@@ -79,6 +93,12 @@ def newUser(request):
             newUser.save()
             # This need to be done before the sending of the mail as it seams to unvalide the tocken
             login(request, newUser)
+
+            life = Life(user=newUser, birthDate=userInfo.get('birthdayDate'))
+            life.save()
+
+            preferences = Preferences(user=newUser)
+            preferences.save()
 
             c = {
                 'email': newUser.email,
