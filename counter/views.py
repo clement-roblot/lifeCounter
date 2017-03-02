@@ -1,6 +1,6 @@
 import os, random, string
 
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext, loader
@@ -15,15 +15,19 @@ from django.core.mail import send_mail
 from .forms import NewUserForm, LoginForm
 from .models import Life, Preferences
 
+from datetime import date, datetime
+
 
 
 def getUserCount(user):
 
-    #life = Life.objects.get(user=user)
+    life = get_object_or_404(Life, user=user)
 
-    #print(user.email)
+    livedDays = (date.today() - life.birthDate).days
 
-    return 35000
+    stillToLive = 30000 - livedDays
+
+    return stillToLive
 
 
 

@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 
 class Life(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    birthDate = models.DateTimeField('Birth date')
+    birthDate = models.DateField('Birth date')
     #is smoking
     #is doing sports
     #is eating healthy
