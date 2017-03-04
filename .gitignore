@@ -137,3 +137,8 @@ GitHub.sublime-settings
 lifeCounterEnv/*
 
 lifeCounter/emailServerSecret
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml

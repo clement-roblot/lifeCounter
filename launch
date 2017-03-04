@@ -14,3 +14,6 @@ virtualenv --python=python3 lifeCounterEnv
 source lifeCounterEnv/bin/activate
 pip install django==1.10
 
+
+
+http://lifecounterenv.tjdujbvgdy.eu-central-1.elasticbeanstalk.com/
