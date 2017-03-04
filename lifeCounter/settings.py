@@ -27,10 +27,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '4^ijl^^pvjpu_mcaiq(487!@ven0dtz&05*h90ao7^4r(dhaf2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-if 'RDS_HOSTNAME' in os.environ:
-  DEBUG = False
-else
-  DEBUG = True
+#if 'RDS_HOSTNAME' in os.environ:
+#    DEBUG = False
+#else:
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
