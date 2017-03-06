@@ -16,32 +16,53 @@
 <script src="{% static 'counter/jquery.incremental-counter.min.js' %}"></script>
 
 
+
+<link rel="stylesheet" href="{% static 'fullPage.js-master/dist/jquery.fullpage.min.js' %}">
+<script src="{% static 'fullPage.js-master/dist/jquery.fullpage.js' %}"></script>
+
+
 {% endblock %}
 
 
 
 {% block bodyBlock %}
 
-<br>
 
 
+<div id="fullpage">
+    <div class="section">
 
-<div class="row align-middle" style="height:500px;">
-    <div class="columns">
-        <div class="row align-middle">
-            <div class="columns"><div class="incremental-counter text-center" data-value="{{personnalCount}}"></div></div>
+        <div class="row align-middle" style="height:100%">
+            <div class="columns">
+                <div class="row align-middle">
+                    <div class="columns"><div class="incremental-counter text-center" data-value="{{personnalCount}}"></div></div>
+                </div>
+                <br>
+
+                <div class="row align-middle">
+                    <div class="columns"><h3 class="text-center">Your count</h3></div>
+                </div>
+
+                <br><br><br><br><br><br>
+
+                <div class="row align-middle">
+                    <div class="columns"><h3 class="text-center">Want to learn how to use them well ? Then scroll !</h3></div>
+                </div>
+            </div>
         </div>
-        <br>
+
+    </div>
+
+    <div class="section">
 
         <div class="row align-middle">
-            <div class="columns"><h3 class="text-center">Your count</h3></div>
+            <div class="columns">
+                le flux avec plein d'articles
+            </div>
         </div>
+
     </div>
 </div>
-
-
-
-
 
 
 
@@ -50,21 +71,11 @@
 
 {% block scriptBlock %}
 
-    $('#id_birthdayDate').fdatepicker({
-        initialDate: '02-12-1989',
-        format: 'mm-dd-yyyy',
-        // keyboardNavigation: false,
-        disableDblClickSelection: true,
-        leftArrow:'<<',
-        rightArrow:'>>',
-        closeIcon:'X',
-        closeButton: true
-        // autoShow: false
-    });
 
-    jQuery(function($) {
+    $(document).ready(function() {
 
         $(".incremental-counter").incrementalCounter();
+        $('#fullpage').fullpage();
     });
 
 {% endblock %}
