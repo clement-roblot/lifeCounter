@@ -29,6 +29,10 @@ def getUserCount(user):
 
     return stillToLive
 
+def getPageArticleFeed():
+
+    return "kikoo"
+
 
 
 def index(request):
@@ -49,9 +53,11 @@ def index(request):
     else:
 
         userCount = getUserCount(request.user)
+        articleFeed = getPageArticleFeed()
 
         context = {
             'personnalCount'    : userCount,
+            'articleFeed'       : articleFeed
         }
 
         return render(request, 'profil.html', context)

@@ -22,6 +22,18 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.3/jquery.fullpage.min.js"></script>
 
 
+
+<style type="text/css">
+
+.fb-page, 
+.fb-page span, 
+.fb-page span iframe[style] { 
+    width: 100% !important; 
+}
+
+</style>
+
+
 {% endblock %}
 
 
@@ -70,14 +82,9 @@
         <div class="row align-middle">
             <div class="columns">
 
-                <div class="fb-page" data-href="https://www.facebook.com/LifeCounter-1892853690943549/" data-tabs="timeline" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
-                    <blockquote cite="https://www.facebook.com/LifeCounter-1892853690943549/" class="fb-xfbml-parse-ignore">
-                        <a href="https://www.facebook.com/LifeCounter-1892853690943549/">
-                            LifeCounter
-                        </a>
-                    </blockquote>
-                </div>
-
+            Feed of articles : 
+            {{articleFeed}}
+            
             </div>
         </div>
 
