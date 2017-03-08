@@ -72,11 +72,63 @@
 
 {% block scriptBlock %}
 
+    window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '158969601286461',
+          xfbml      : true,
+          version    : 'v2.8'
+        });
+
+        FB.AppEvents.logPageView();
+
+
+        /*FB.login(function(){
+          // Note: The call will only work if you accept the permission request
+          FB.api('/me/feed', 'post', {message: 'Hello, world!'});
+        }, {scope: 'publish_actions'});*/
+
+        /*FB.login(function(){
+
+          // Note: The call will only work if you accept the permission request
+          FB.api('/thefamilyPIF/posts', 'get', {});
+
+
+        }, {scope: 'publish_actions'});*/
+
+        FB.getLoginStatus(function(response) {
+            alert(JSON.stringify(response));
+          if (response.status === 'connected') {
+            var accessToken = response.authResponse.accessToken;
+          } 
+        } );
+
+        /*FB.api(
+          '/1892853690943549/feed',
+          'GET',
+          {},
+          function(response) {
+              alert("kikoo : " + JSON.stringify(response) );
+          }
+        );*/
+
+
+        //alert("finit");
+    };
+
+    (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
 
     $(document).ready(function() {
 
         $(".incremental-counter").incrementalCounter();
         $('#fullpage').fullpage();
+
     });
 
 {% endblock %}
