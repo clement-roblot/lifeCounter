@@ -17,6 +17,8 @@ from .models import Life, Preferences
 
 from datetime import date, datetime
 
+import requests
+
 
 
 def getUserCount(user):
@@ -31,7 +33,10 @@ def getUserCount(user):
 
 def getPageArticleFeed():
 
-    return "kikoo"
+
+    r = requests.get('https://graph.facebook.com/1892853690943549/feed')
+
+    return r.text
 
 
 
