@@ -11,3 +11,12 @@ Reset password tutorial :
 - http://ruddra.com/2015/09/18/implementation-of-forgot-reset-password-feature-in-django/
 
 REST requests : http://docs.python-requests.org/en/master/
+
+graph api : https://github.com/mobolic/facebook-sdk
+
+
+
+install :
+sudo apt-get install python-dev python3-dev
+sudo apt-get install libmysqlclient-dev
+

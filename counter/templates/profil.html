@@ -22,18 +22,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.3/jquery.fullpage.min.js"></script>
 
 
-
-<style type="text/css">
-
-.fb-page, 
-.fb-page span, 
-.fb-page span iframe[style] { 
-    width: 100% !important; 
-}
-
-</style>
-
-
 {% endblock %}
 
 
@@ -79,12 +67,44 @@
 
     <div class="section active">
 
-        <div class="row align-middle">
-            <div class="columns">
 
-            Feed of articles : 
-            {{articleFeed}}
-            
+        <div class="row small-up-2 medium-up-3" style="height:600px;" data-equalizer>
+            <div class="column">
+
+                <div class="card" data-equalizer-watch>
+                    <div class="card-section">
+                        <h4>Juste do it</h4>
+                        <img src="{% static 'justdoit.jpg' %}">
+                    </div>
+                </div>
+
+            </div>
+            <div class="column">
+
+                <div class="card" data-equalizer-watch>
+                    <div class="card-section">
+                        <h4>Get tips and advices</h4>
+                        <div class="fb-page" data-href="https://www.facebook.com/LifeCounter-1892853690943549/" data-tabs="timeline" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+                            <blockquote cite="https://www.facebook.com/LifeCounter-1892853690943549/" class="fb-xfbml-parse-ignore">
+                                <a href="https://www.facebook.com/LifeCounter-1892853690943549/">
+                                    LifeCounter
+                                </a>
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="column">
+
+                <div class="card" data-equalizer-watch>
+                    <div class="card-section">
+                        <h4>Elon Musk</h4>
+                        <img src="{% static 'elon.jpg' %}">
+                        <p>Time is very important. lerem ipsum blablba. lerem ipsum blablba. lerem ipsum blablba. lerem ipsum blablba. lerem ipsum blablba. lerem ipsum blablba</p>
+                    </div>
+                </div>
+
             </div>
         </div>
 

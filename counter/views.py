@@ -20,7 +20,6 @@ from datetime import date, datetime
 import requests
 
 
-
 def getUserCount(user):
 
     life = get_object_or_404(Life, user=user)
@@ -31,10 +30,18 @@ def getUserCount(user):
 
     return stillToLive
 
+
+
 def getPageArticleFeed():
 
 
-    r = requests.get('https://graph.facebook.com/1892853690943549/feed')
+    # token : EAACQlP6dYT0BADjGVt57ZCc4wMKcMwI5MeaiixO6InpQl4Wg4IhGzfDvHOHTZBgKhpvV5R8ZCsKhBZCZBLgFj1eLDa65dmr4ZCgHN1Jhom5XyEQ0hg3KndTtzZChxcGeFnGdacIXH6GZBW4tQ0PveZAfCAZC6YCQ5ue8wZClhyiqEDylEzuEqvF8qZBuYQnVEWqJK4UZD
+
+    headers = {'Authorization': 'EAACQlP6dYT0BADjGVt57ZCc4wMKcMwI5MeaiixO6InpQl4Wg4IhGzfDvHOHTZBgKhpvV5R8ZCsKhBZCZBLgFj1eLDa65dmr4ZCgHN1Jhom5XyEQ0hg3KndTtzZChxcGeFnGdacIXH6GZBW4tQ0PveZAfCAZC6YCQ5ue8wZClhyiqEDylEzuEqvF8qZBuYQnVEWqJK4UZD'}
+    
+    #r = requests.get('https://graph.facebook.com/me/accounts')
+    r = requests.get('https://graph.facebook.com/1892853690943549/feed', headers=headers)
+
 
     return r.text
 
