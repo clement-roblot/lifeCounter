@@ -16,12 +16,17 @@
 
 <script src="{% static 'counter/jquery.incremental-counter.js' %}"></script>
 
-
-
+<script src="{% static 'sharetastic-master/dist/sharetastic.js' %}"></script>
+<link rel="stylesheet" href="{% static 'sharetastic-master/dist/sharetastic.css' %}">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.3/jquery.fullpage.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.3/jquery.fullpage.min.js"></script>
 
+
+<meta property="og:title" content="LifeCounter" />
+<meta property="og:description" content="I still have {{personnalCount}} days to put to good use" />
+<meta property="og:url" content="http://lifecounterenv.tjdujbvgdy.eu-central-1.elasticbeanstalk.com/" />
+<meta property="og:image" content="" />
 
 {% endblock %}
 
@@ -54,6 +59,9 @@
 
                 <div class="row align-middle">
                     <div class="columns"><h3 class="text-center">Your count</h3></div>
+                </div>
+                <div class="row align-middle">
+                    <div class="columns"><div class="sharetastic"></div></div>
                 </div>
 
                 <br><br><br><br><br><br>
@@ -122,10 +130,17 @@
     $(document).ready(function() {
 
         $(".incremental-counter").incrementalCounter({
-          "digits": 5
+          "digits": 5,
         });
         $('#fullpage').fullpage();
+        $('.sharetastic').sharetastic({
 
+            sprite: "{% static 'sharetastic-master/dist/sharetastic.svg' %}",
+            popup: true,
+            services: {
+                print: false,
+            }
+        });
     });
 
 {% endblock %}
