@@ -53,14 +53,17 @@
       <div class="row align-middle" style="height:100%;">
           <div class="columns">
               <form action="newUser/" method="post">{% csrf_token %}
+
+                  <!-- Yes it's hugly AF to overflow the layout, but it works -->
                   <div class="row align-middle">
                       {% for field in newUserForm %}
-                      <div class="columns medium-6">
-                          {{ field.errors }}
-                          {{ field.label_tag }}{{ field }}
-                      </div>
+                        <div class="columns small-12 medium-6">
+                            {{ field.errors }}
+                            {{ field.label_tag }}{{ field }}
+                        </div>
                       {% endfor %}
                   </div>
+
                   <div class="row align-spaced">
                       <div class="columns medium-4 text-center"><input type="submit" class="button expanded" value="Get my count"></div>
                   </div>

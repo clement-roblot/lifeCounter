@@ -33,13 +33,13 @@
                     current_value += 1;
                 } else if(end_value - current_value < 15){
                     current_speed = 50;
-                    current_value += 1
+                    current_value += 1;
                 } else if(end_value - current_value < 50){
                     current_speed = 25;
-                    current_value += 3
+                    current_value += 3;
                 } else{
                     current_speed = 25;
-                    current_value += parseInt((end_value - current_value)/24)
+                    current_value += parseInt((end_value - current_value)/24);
                 }
 
                 $(element).data({
