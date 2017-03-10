@@ -24,7 +24,7 @@
                     end_value = $(element).data('end_value'),
                     current_speed = 20;
 
-                if (end_value - current_value < 5){
+                if (end_value - current_value == 0){
                     current_speed = 200;
                     current_value += 0;
                 }
