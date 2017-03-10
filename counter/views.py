@@ -75,6 +75,16 @@ def logIn(request):
                 if user.is_active:
                     login(request, user)
                     return redirect('index')
+                else:
+                    messages.error(request, "User have been deactivated.")
+                    redirect('index')
+            else:
+                messages.error(request, "User not found.")
+                redirect('index')
+
+        else:
+            messages.error(request, "Error found in the login form.")
+            redirect('index')
 
     else:
         return redirect('index')
