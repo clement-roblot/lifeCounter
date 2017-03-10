@@ -26,6 +26,10 @@
 
                 if (end_value - current_value < 5){
                     current_speed = 200;
+                    current_value += 0;
+                }
+                else if (end_value - current_value < 5){
+                    current_speed = 200;
                     current_value += 1;
                 } else if(end_value - current_value < 15){
                     current_speed = 50;

@@ -27,6 +27,9 @@ def getUserCount(user):
 
     stillToLive = 30000 - livedDays
 
+    if stillToLive < 0:
+        stillToLive = 0
+
     return stillToLive
 
 

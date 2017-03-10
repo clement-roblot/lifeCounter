@@ -14,7 +14,7 @@
 
 <script src="{% static 'script.js' %}"></script>
 
-<script src="{% static 'counter/jquery.incremental-counter.min.js' %}"></script>
+<script src="{% static 'counter/jquery.incremental-counter.js' %}"></script>
 
 
 
@@ -121,7 +121,9 @@
 
     $(document).ready(function() {
 
-        $(".incremental-counter").incrementalCounter();
+        $(".incremental-counter").incrementalCounter({
+          "digits": 5
+        });
         $('#fullpage').fullpage();
 
     });
