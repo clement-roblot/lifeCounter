@@ -20,41 +20,61 @@
 
     <body>
 
+
       <div class="top-bar">
-        <div class="">
-          <ul class="dropdown menu" data-dropdown-menu>
-            <li class="menu-text">Life counter</li>
-          </ul>
+        <div class="top-bar-title">
+          <span data-responsive-toggle="responsive-menu" data-hide-for="medium">
+            <button class="menu-icon dark" type="button" data-toggle></button>
+          </span>
+          <strong>Life counter</strong>
         </div>
-        <div class="">
-          <ul class="dropdown menu" data-dropdown-menu>
-            <!-- <li><a href="#">Log in</a></li> -->
-            {% if user.is_authenticated %}
-            <li>
-              {{ user.username }}
-              <ul class="menu vertical">
-                <li><a href="signOut">Sign out</a></li>
-              </ul>
-            </li>
-            {% else %}
-            <li><button type="button" class="button" data-open="loginModal">Login</button></li>
-            <div class="tiny reveal" id="loginModal" data-reveal>
-              <h1>Login</h1>
+        <div id="responsive-menu">
 
-              <form action="logIn/" method="post">{% csrf_token %}
-                  {{ loginUserForm }}
-                  <input type="submit" class="button expanded" value="Login">
-              </form>
+          <div class="top-bar-left">
+
+            <ul class="dropdown menu" data-dropdown-menu>
+
+              {% if user.is_authenticated %}
+
+                  <li class="show-for-small-only"><a href="signOut"><button type="button" class="button" style="width:100%">Sign out</button></a></li>
+
+                  <li class="hide-for-small-only">
+                    {{ user.username }}
+                    <ul class="menu vertical">
+                      <li><a href="signOut"><button type="button" class="button" style="width:100%">Sign out</button></a></li>
+                    </ul>
+                  </li>
 
 
-              <button class="close-button" data-close aria-label="Close modal" type="button">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            {% endif %}
-          </ul>
+              {% else %}
+                  <li><button type="button" class="button" data-open="loginModal">Login</button></li>
+                  <div class="tiny reveal" id="loginModal" data-reveal>
+                    <h1>Login</h1>
+
+                    <form action="logIn/" method="post">{% csrf_token %}
+                        {{ loginUserForm }}
+                        <input type="submit" class="button expanded" value="Login">
+                    </form>
+
+
+                    <button class="close-button" data-close aria-label="Close modal" type="button">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+              {% endif %}
+            </ul>
+
+          </div>
+
         </div>
       </div>
+
+
+
+
+
+
+
 
 {% if messages %}
   {% for message in messages %}
