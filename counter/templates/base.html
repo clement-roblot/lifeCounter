@@ -58,7 +58,7 @@
 
 {% if messages %}
   {% for message in messages %}
-  <div{% if message.tags %} class="callout {{ message.tags }}"{% endif %}>{{ message }}</div>
+  <span{% if message.tags %} class="callout {{ message.tags }}"{% endif %}>{{ message }}</span>
   {% endfor %}
 {% endif %}
 
@@ -75,6 +75,10 @@
         $(document).ready(function() {
 
             $(document).foundation();
+
+            setTimeout(function () {
+              $('.callout').remove();
+            }, 5000);
         })
 
 
