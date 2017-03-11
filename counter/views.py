@@ -111,7 +111,8 @@ def newUser(request):
             # This need to be done before the sending of the mail as it seams to unvalide the tocken
             login(request, newUser)
 
-            life = Life(user=newUser, birthDate=userInfo.get('birthdayDate'))
+            birthDate = date.today().replace(year=userInfo.get('birthYear'), month=userInfo.get('birthMonth'), day=userInfo.get('birthDay'))
+            life = Life(user=newUser, birthDate=birthDate)
             life.save()
 
             preferences = Preferences(user=newUser)
@@ -136,8 +137,7 @@ def newUser(request):
             email = loader.render_to_string(email_template_name, c)
             send_mail(subject, email, "karlito@martobre.fr" , [newUser.email], fail_silently=False)
 
-            messages.success(request, 'An email has been sent to ' + newUser.email +". Please check its inbox to continue reseting password.")
-            messages.success(request, "Thanks for registering. You are now logged in.")
+            messages.success(request, 'You are now logged in, an email has been sent to ' + newUser.email +".")
 
             return redirect('index')
         else:

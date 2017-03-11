@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 
 class Life(models.Model):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, primary_key=True, on_delete=models.CASCADE)
     birthDate = models.DateField('Birth date')
     #is smoking
     #is doing sports
@@ -16,7 +16,7 @@ class Life(models.Model):
 
 
 class Preferences(models.Model):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, primary_key=True, on_delete=models.CASCADE)
     sendNewsletter = models.BooleanField(default=True)
 
     def __unicode__(self):

@@ -28,3 +28,10 @@
      top: 50%;
      width: auto;
 }
+
+
+.callout{
+
+    width: 100%;
+    opacity: 0.75;
+}

@@ -27,6 +27,7 @@
 
 
 <div id="fullpage">
+
     <div class="section">
 
       <div class="row align-middle" style="height:100%;">
@@ -37,32 +38,33 @@
               <br>
 
               <div class="row align-middle">
-                  <div class="columns"><h3 class="text-center">Number of days in a human life</h3></div>
+                  <div class="columns"><h2 class="text-center">Number of days in a human life</h2></div>
               </div>
 
               <div class="row align-middle">
-                  <div class="columns"><h4 class="text-center">Find out how many days you have left to put to good use : scroll ! </h4></div>
+                  <div class="columns"><h3 class="text-center">Find out how many days you have left to put to good use : scroll ! </h3></div>
               </div>
           </div>
       </div>
 
     </div>
 
-    <div class="section">
+    <div class="section active">
 
       <div class="row align-middle" style="height:100%;">
           <div class="columns">
               <form action="newUser/" method="post">{% csrf_token %}
 
-                  <!-- Yes it's hugly AF to overflow the layout, but it works -->
                   <div class="row align-middle">
-                      {% for field in newUserForm %}
-                        <div class="columns small-12 medium-6">
-                            {{ field.errors }}
-                            {{ field.label_tag }}{{ field }}
-                        </div>
-                      {% endfor %}
+                    <div class="columns medium-4 large-4">{{ newUserForm.birthYear.errors }}{{ newUserForm.birthYear.label_tag }}{{ newUserForm.birthYear }}</div>
+                    <div class="columns medium-4 large-4">{{ newUserForm.birthMonth.errors }}{{ newUserForm.birthMonth.label_tag }}{{ newUserForm.birthMonth }}</div>
+                    <div class="columns medium-4 large-4">{{ newUserForm.birthDay.errors }}{{ newUserForm.birthDay.label_tag }}{{ newUserForm.birthDay }}</div>
                   </div>
+
+                  <div class="row align-middle">
+                    <div class="columns medium-12 large-12">{{ newUserForm.email.errors }}{{ newUserForm.email.label_tag }}{{ newUserForm.email }}</div>
+                  </div>
+
 
                   <div class="row align-spaced">
                       <div class="columns medium-4 text-center"><input type="submit" class="button expanded" value="Get my count"></div>
@@ -127,7 +129,7 @@
 
 {% block scriptBlock %}
 
-    $('#id_birthdayDate').fdatepicker({
+    /*$('#id_birthdayDate').fdatepicker({
         initialDate: '1989-02-12',
         format: 'yyyy-mm-dd',
         // keyboardNavigation: false,
@@ -137,7 +139,7 @@
         closeIcon:'X',
         closeButton: true
         // autoShow: false
-    });
+    });*/
     
     $(document).ready(function() {
 
