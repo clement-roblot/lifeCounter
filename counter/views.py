@@ -54,21 +54,27 @@ def sendResetPasswordEmail(request, user):
     send_mail(subject, email, "karlito@martobre.fr" , [user.email], fail_silently=False)
 
 
+def getBasicForms():
+
+    newUserForm = NewUserForm()
+    loginUserForm = LoginForm()
+    resetPasswordForm = ResetPasswordForm()
+
+    context = {
+        'newUserForm'        : newUserForm,
+        'loginUserForm'      : loginUserForm,
+        'resetPasswordForm'  : resetPasswordForm,
+    }
+
+    return context
+
 
 def index(request):
 
 
     if not request.user.is_authenticated():
 
-        newUserForm = NewUserForm()
-        loginUserForm = LoginForm()
-        resetPasswordForm = ResetPasswordForm()
-
-        context = {
-           'newUserForm'        : newUserForm,
-           'loginUserForm'      : loginUserForm,
-           'resetPasswordForm'  : resetPasswordForm,
-        }
+        context = getBasicForms()
 
         return render(request, 'index.html', context)
 

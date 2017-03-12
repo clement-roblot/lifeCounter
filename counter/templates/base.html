@@ -51,7 +51,7 @@
                   <div class="tiny reveal" id="loginModal" data-reveal>
                     <h1>Login</h1>
 
-                    <form action="logIn/" method="post">{% csrf_token %}
+                    <form action="/counter/logIn/" method="post">{% csrf_token %}
                         {{ loginUserForm }}
                         <input type="submit" class="button expanded" value="Login">
                     </form>
@@ -66,7 +66,7 @@
                   <div id="lostPasswordModal" class="reveal" data-reveal aria-labelledby="secondModalTitle" aria-hidden="true" role="dialog">
                     <h1 id="secondModalTitle">Password lost</h2>
 
-                    <form action="resetPassword/" method="post">{% csrf_token %}
+                    <form action="/counter/resetPassword/" method="post">{% csrf_token %}
                         {{resetPasswordForm}}
                         <input type="submit" class="button expanded" value="Reset password">
                     </form>
@@ -82,12 +82,6 @@
 
         </div>
       </div>
-
-
-
-
-
-
 
 
 {% if messages %}
@@ -113,7 +107,7 @@
             setTimeout(function () {
               $('.callout').remove();
             }, 5000);
-        })
+        });
 
 
         {% block scriptBlock %}{% endblock %}

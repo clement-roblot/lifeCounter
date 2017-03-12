@@ -4,13 +4,6 @@
 {% block headBlock %}
 {% load static %}
 
-<script src="{% static 'foundation-datepicker/js/foundation-datepicker.min.js' %}"></script>
-<script src="{% static 'foundation-datepicker/js/locales/foundation-datepicker.en-GB.js' %}"></script>
-
-<link rel="stylesheet" href="{% static 'foundation-datepicker/css/foundation-datepicker.min.css' %}">
-<link href="//cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css" rel="stylesheet">
-<link href="//netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet">
-
 <script src="{% static 'script.js' %}"></script>
 
 <script src="{% static 'counter/jquery.incremental-counter.js' %}"></script>
@@ -128,18 +121,6 @@
 
 
 {% block scriptBlock %}
-
-    /*$('#id_birthdayDate').fdatepicker({
-        initialDate: '1989-02-12',
-        format: 'yyyy-mm-dd',
-        // keyboardNavigation: false,
-        disableDblClickSelection: true,
-        leftArrow:'<<',
-        rightArrow:'>>',
-        closeIcon:'X',
-        closeButton: true
-        // autoShow: false
-    });*/
     
     $(document).ready(function() {
 
