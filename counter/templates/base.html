@@ -56,6 +56,20 @@
                         <input type="submit" class="button expanded" value="Login">
                     </form>
 
+                    <button type="button" class="button secondary" data-open="lostPasswordModal">Password lost</button>
+
+                    <button class="close-button" data-close aria-label="Close modal" type="button">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+
+                  <div id="lostPasswordModal" class="reveal" data-reveal aria-labelledby="secondModalTitle" aria-hidden="true" role="dialog">
+                    <h1 id="secondModalTitle">Password lost</h2>
+
+                    <form action="resetPassword/" method="post">{% csrf_token %}
+                        {{resetPasswordForm}}
+                        <input type="submit" class="button expanded" value="Reset password">
+                    </form>
 
                     <button class="close-button" data-close aria-label="Close modal" type="button">
                       <span aria-hidden="true">&times;</span>

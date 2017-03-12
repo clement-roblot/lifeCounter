@@ -12,7 +12,7 @@ from django.utils.encoding import force_bytes
 from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import send_mail
 
-from .forms import NewUserForm, LoginForm
+from .forms import NewUserForm, LoginForm, ResetPasswordForm
 from .models import Life, Preferences
 
 from datetime import date, datetime
@@ -33,6 +33,27 @@ def getUserCount(user):
     return stillToLive
 
 
+def sendResetPasswordEmail(request, user):
+    c = {
+        'email': user.email,
+        'domain': request.META['HTTP_HOST'],
+        'site_name': 'your site',
+        'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+        'user': user,
+        'token': default_token_generator.make_token(user),
+        'protocol': 'http',
+        }
+    subject_template_name='resetPassword/password_reset_subject.txt' 
+    # copied from django/contrib/admin/templates/registration/password_reset_subject.txt to templates directory
+    email_template_name='resetPassword/password_reset_email.html'    
+    # copied from django/contrib/admin/templates/registration/password_reset_email.html to templates directory
+    subject = loader.render_to_string(subject_template_name, c)
+    # Email subject *must not* contain newlines
+    subject = ''.join(subject.splitlines())
+    email = loader.render_to_string(email_template_name, c)
+    send_mail(subject, email, "karlito@martobre.fr" , [user.email], fail_silently=False)
+
+
 
 def index(request):
 
@@ -41,10 +62,12 @@ def index(request):
 
         newUserForm = NewUserForm()
         loginUserForm = LoginForm()
+        resetPasswordForm = ResetPasswordForm()
 
         context = {
-           'newUserForm'   : newUserForm,
-           'loginUserForm' : loginUserForm,
+           'newUserForm'        : newUserForm,
+           'loginUserForm'      : loginUserForm,
+           'resetPasswordForm'  : resetPasswordForm,
         }
 
         return render(request, 'index.html', context)
@@ -92,7 +115,28 @@ def logIn(request):
     return redirect('index')
 
 
+def resetPassword(request):
 
+    # if this is a POST request we need to process the form data
+    if request.method == 'POST':
+
+        resetPswForm = ResetPasswordForm(request.POST)
+        if resetPswForm.is_valid():
+
+            resetPwsInfo = resetPswForm.cleaned_data
+
+            user = get_object_or_404(User, username=resetPwsInfo.get('email'))
+
+            sendResetPasswordEmail(request, user)
+
+            messages.success(request, "An email was sent to " + user.email + " in order to reset your password.")
+            redirect('index')
+
+        else:
+            messages.error(request, "Error found in the reset form.")
+            redirect('index')
+
+    return redirect('index')
 
 
 def newUser(request):
@@ -118,24 +162,7 @@ def newUser(request):
             preferences = Preferences(user=newUser)
             preferences.save()
 
-            c = {
-                'email': newUser.email,
-                'domain': request.META['HTTP_HOST'],
-                'site_name': 'your site',
-                'uid': urlsafe_base64_encode(force_bytes(newUser.pk)),
-                'user': newUser,
-                'token': default_token_generator.make_token(newUser),
-                'protocol': 'http',
-                }
-            subject_template_name='resetPassword/password_reset_subject.txt' 
-            # copied from django/contrib/admin/templates/registration/password_reset_subject.txt to templates directory
-            email_template_name='resetPassword/password_reset_email.html'    
-            # copied from django/contrib/admin/templates/registration/password_reset_email.html to templates directory
-            subject = loader.render_to_string(subject_template_name, c)
-            # Email subject *must not* contain newlines
-            subject = ''.join(subject.splitlines())
-            email = loader.render_to_string(email_template_name, c)
-            send_mail(subject, email, "karlito@martobre.fr" , [newUser.email], fail_silently=False)
+            sendResetPasswordEmail(request, newUser)
 
             messages.success(request, 'You are now logged in, an email has been sent to ' + newUser.email +".")
 
