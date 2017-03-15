@@ -154,6 +154,10 @@ def newUser(request):
         if newUserForm.is_valid():
             userInfo = newUserForm.cleaned_data
 
+            if User.objects.filter(username=userInfo.get('email')).exists():
+                messages.error(request, "This email is already registered.")
+                return redirect('index')
+
             newPassword = ''.join(random.SystemRandom().choice(string.ascii_lowercase + string.ascii_uppercase + string.digits) for _ in range(50))
 
             newUser = User.objects.create_user(userInfo.get('email'), userInfo.get('email'), newPassword)
