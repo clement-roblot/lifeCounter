@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %}{{personnalCount}} days{% endblock %}
+
+{% block headBlock %}
+{% load static %}
+
+<script src="{% static 'script.js' %}"></script>
+
+{% endblock %}
+
+
+
+{% block bodyBlock %}
+
+
+<br><br><br><br><br><br>
+
+<div class="row align-middle" style="height:100%">
+    <div class="columns">
+
+        <form action="/counter/updateSettings" method="post">{% csrf_token %}
+            <div class="row align-middle">
+                <h1>Personnal settings</h1>
+            </div>
+            <div class="row align-middle">
+                <div class="columns medium-4 large-4">{{settingsForm.email.errors}}{{settingsForm.email.label_tag}}</div>
+                <div class="columns medium-8 large-8">{{settingsForm.email}}</div>
+            </div>
+            <div class="row align-middle">Birth : </div>
+            <div class="row align-middle">
+                <div class="columns medium-4 large-4">{{ settingsForm.birthYear.errors }}{{ settingsForm.birthYear.label_tag }}{{ settingsForm.birthYear }}</div>
+                <div class="columns medium-4 large-4">{{ settingsForm.birthMonth.errors }}{{ settingsForm.birthMonth.label_tag }}{{ settingsForm.birthMonth }}</div>
+                <div class="columns medium-4 large-4">{{ settingsForm.birthDay.errors }}{{ settingsForm.birthDay.label_tag }}{{ settingsForm.birthDay }}</div>
+            </div>
+
+            <div class="row align-spaced">
+                <div class="columns medium-6 text-center"><input type="submit" class="button expanded" value="Update"></div>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+
+
+
+{% endblock %}
+
+
+{% block scriptBlock %}
+
+    $(document).ready(function() {
+
+    });
+
+{% endblock %}
+
+

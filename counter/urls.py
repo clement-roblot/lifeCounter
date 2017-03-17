@@ -7,6 +7,8 @@ urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^newUser', views.newUser, name='newUser'),
     url(r'^logIn', views.logIn, name='logIn'),
+    url(r'^settings', views.settings, name='settings'),
+    url(r'^updateSettings', views.updateSettings, name='updateSettings'),
     url(r'^resetPassword', views.resetPassword, name='resetPassword'),
     url(r'^signOut', views.logUserOut, name='logUserOut'),
 

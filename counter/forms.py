@@ -23,3 +23,19 @@ class LoginForm(forms.Form):
 
 class ResetPasswordForm(forms.Form):
     email = forms.EmailField(label='Email', max_length=100)
+
+class SettingsForm(forms.Form):
+
+	def __init__(self, *args, **kwargs):
+		super(SettingsForm, self).__init__(*args, **kwargs)
+		self.fields['birthYear'] = forms.IntegerField(label='Birth year', min_value=1900, max_value=datetime.datetime.now().year)
+
+	birthYear = forms.IntegerField(label='Year', min_value=1900, max_value=2100)
+	birthMonth = forms.IntegerField(label='Month', min_value=1, max_value=12)
+	birthDay = forms.IntegerField(label='Day', min_value=1, max_value=31)
+
+	email = forms.EmailField(label='Email', max_length=100)
+	#reset password
+
+	#delete the account
+	#stop getting emails from us

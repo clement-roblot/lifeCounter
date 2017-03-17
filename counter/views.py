@@ -12,7 +12,7 @@ from django.utils.encoding import force_bytes
 from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import send_mail
 
-from .forms import NewUserForm, LoginForm, ResetPasswordForm
+from .forms import NewUserForm, LoginForm, ResetPasswordForm, SettingsForm
 from .models import Life, Preferences
 
 from datetime import date, datetime
@@ -174,7 +174,7 @@ def newUser(request):
 
             sendResetPasswordEmail(request, newUser)
 
-            messages.success(request, 'You are now logged in, an email has been sent to ' + newUser.email +".")
+            messages.success(request, "You are now logged in, an email has been sent to " + newUser.email +".")
 
             return redirect('index')
         else:
@@ -188,3 +188,62 @@ def newUser(request):
 def logUserOut(request):
     logout(request)
     return redirect('index')
+
+
+def settings(request):
+
+    if not request.user.is_authenticated():
+        messages.error(request, "Please login before editing your settings.")
+        return redirect('index')
+    else:
+
+        userLife = get_object_or_404(Life, user=request.user)
+
+        settingsForm = SettingsForm(initial={
+
+            'email': request.user.email,
+            'birthYear': userLife.birthDate.year,
+            'birthMonth': userLife.birthDate.month,
+            'birthDay': userLife.birthDate.day,
+            })
+
+        context = {
+            'settingsForm'    : settingsForm,
+        }
+
+        return render(request, 'settings.html', context)
+
+
+def updateSettings(request):
+    # if this is a POST request we need to process the form data
+
+    if not request.user.is_authenticated():
+        messages.error(request, "Please login before editing your settings.")
+        return redirect('index')
+    else:
+        if request.method == 'POST':
+
+            settingsForm = SettingsForm(request.POST)
+
+            if settingsForm.is_valid():
+                settingsInfo = settingsForm.cleaned_data
+
+                userLife = get_object_or_404(Life, user=request.user)
+
+                birthDate = date.today().replace(year=settingsInfo.get('birthYear'), month=settingsInfo.get('birthMonth'), day=settingsInfo.get('birthDay'))
+
+                userLife.birthDate = birthDate
+                userLife.save()
+
+                messages.success(request, "Your settings were updated.")
+                return redirect('settings')
+            else:
+                messages.error(request, "Error found in the setting form.")
+                return redirect('index')
+
+
+        else:
+            messages.error(request, "This page should only be posted.")
+            return redirect('index')
+
+

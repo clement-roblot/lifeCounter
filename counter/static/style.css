@@ -37,7 +37,11 @@
     opacity: 0.75;
 }
 
+.top-bar{
+    z-index: 10;
+}
+
 #fullpage{
 
-    z-index: -1;
+    z-index: 0;
 }

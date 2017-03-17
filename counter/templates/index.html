@@ -46,7 +46,7 @@
 
       <div class="row align-middle" style="height:100%;">
           <div class="columns">
-              <form action="newUser/" method="post">{% csrf_token %}
+              <form action="/counter/newUser" method="post">{% csrf_token %}
 
                   <div class="row align-middle">
                     <div class="columns medium-4 large-4">{{ newUserForm.birthYear.errors }}{{ newUserForm.birthYear.label_tag }}{{ newUserForm.birthYear }}</div>
