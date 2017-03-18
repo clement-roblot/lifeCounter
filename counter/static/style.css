@@ -38,10 +38,11 @@
 }
 
 .top-bar{
+    position: relative;
     z-index: 10;
 }
 
 #fullpage{
 
-    z-index: 0;
+    z-index: 1;
 }
