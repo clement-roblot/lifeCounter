@@ -230,6 +230,15 @@ def updateSettings(request):
 
                 userLife = get_object_or_404(Life, user=request.user)
 
+
+                if User.objects.filter(username=settingsInfo.get('email')).exists():
+                    messages.error(request, "This email is already registered.")
+                    return redirect('settings')
+
+                request.user.username = settingsInfo.get('email')
+                request.user.email = settingsInfo.get('email')
+                request.user.save()
+
                 birthDate = date.today().replace(year=settingsInfo.get('birthYear'), month=settingsInfo.get('birthMonth'), day=settingsInfo.get('birthDay'))
 
                 userLife.birthDate = birthDate
