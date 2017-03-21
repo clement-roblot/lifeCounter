@@ -5,6 +5,7 @@
 {% load static %}
 
 <script src="{% static 'script.js' %}"></script>
+<script src="{% static 'facebook.js' %}"></script>
 
 <script src="{% static 'counter/jquery.incremental-counter.js' %}"></script>
 
@@ -46,23 +47,35 @@
 
       <div class="row align-middle" style="height:100%;">
           <div class="columns">
-              <form action="/counter/newUser" method="post">{% csrf_token %}
+              <div class="row align-middle">
+                  <div class="columns">
+                    <fb:login-button scope="public_profile,email,user_birthday" onlogin="checkLoginState();"></fb:login-button>
 
-                  <div class="row align-middle">
-                    <div class="columns medium-4 large-4">{{ newUserForm.birthYear.errors }}{{ newUserForm.birthYear.label_tag }}{{ newUserForm.birthYear }}</div>
-                    <div class="columns medium-4 large-4">{{ newUserForm.birthMonth.errors }}{{ newUserForm.birthMonth.label_tag }}{{ newUserForm.birthMonth }}</div>
-                    <div class="columns medium-4 large-4">{{ newUserForm.birthDay.errors }}{{ newUserForm.birthDay.label_tag }}{{ newUserForm.birthDay }}</div>
+                    <div id="status"></div>
                   </div>
+              </div>
 
-                  <div class="row align-middle">
-                    <div class="columns medium-12 large-12">{{ newUserForm.email.errors }}{{ newUserForm.email.label_tag }}{{ newUserForm.email }}</div>
+              <div class="row align-middle">
+                  <div class="columns">
+                      <form id="newUserForm" action="/counter/newUser" method="post">{% csrf_token %}
+
+                          <div class="row align-middle">
+                            <div class="columns medium-4 large-4">{{ newUserForm.birthYear.errors }}{{ newUserForm.birthYear.label_tag }}{{ newUserForm.birthYear }}</div>
+                            <div class="columns medium-4 large-4">{{ newUserForm.birthMonth.errors }}{{ newUserForm.birthMonth.label_tag }}{{ newUserForm.birthMonth }}</div>
+                            <div class="columns medium-4 large-4">{{ newUserForm.birthDay.errors }}{{ newUserForm.birthDay.label_tag }}{{ newUserForm.birthDay }}</div>
+                          </div>
+
+                          <div class="row align-middle">
+                            <div class="columns medium-12 large-12">{{ newUserForm.email.errors }}{{ newUserForm.email.label_tag }}{{ newUserForm.email }}</div>
+                          </div>
+
+
+                          <div class="row align-spaced">
+                              <div class="columns medium-4 text-center"><input type="submit" class="button expanded" value="Get my count"></div>
+                          </div>
+                      </form>
                   </div>
-
-
-                  <div class="row align-spaced">
-                      <div class="columns medium-4 text-center"><input type="submit" class="button expanded" value="Get my count"></div>
-                  </div>
-              </form>
+              </div>
           </div>
       </div>
 
