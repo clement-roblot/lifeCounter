@@ -19,7 +19,13 @@ admin.site.register(Life, LifeAdmin)
 
 
 class PreferencesAdmin(admin.ModelAdmin):
-    pass
+	list_display = ['get_user']
+
+	def get_user(self, obj):
+		return obj.user.username
+
+	get_user.short_description = 'Username'
+
 admin.site.register(Preferences, PreferencesAdmin)
 
 

@@ -18,6 +18,8 @@ class Life(models.Model):
 class Preferences(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, primary_key=True, on_delete=models.CASCADE)
     sendNewsletter = models.BooleanField(default=True)
+    isFacebook = models.BooleanField(default=False)
+    facebookId = models.IntegerField(default=0);
 
     def __unicode__(self):
         return "%s" % (self.user.username)

@@ -1,7 +1,7 @@
 // This is called with the results from from FB.getLoginStatus().
 function statusChangeCallback(response) {
-	console.log('statusChangeCallback');
-	console.log(response);
+	//console.log('statusChangeCallback');
+	//console.log(response);
 	// The response object is returned with a status field that lets the
 	// app know the current login status of the person.
 	// Full docs on the response object can be found in the documentation
@@ -64,11 +64,11 @@ FB.getLoginStatus(function(response) {
 // Here we run a very simple test of the Graph API after login is
 // successful.  See statusChangeCallback() for when this call is made.
 function createUser() {
-	console.log('Welcome!  Fetching your information.... ');
+	//console.log('Welcome!  Fetching your information.... ');
 
 	FB.api('/me?fields=id,name,email,birthday', function(response) {
-	  console.log('Successful login for: ' + response.name);
-	  console.log('response : ' + JSON.stringify(response) );
+	  //console.log('Successful login for: ' + response.name);
+	  //console.log('response : ' + JSON.stringify(response) );
 
 
 	  var birthday = new Date(response.birthday);
@@ -77,6 +77,7 @@ function createUser() {
 	  $("#id_birthMonth").val(birthday.getUTCMonth() + 1);
 	  $("#id_birthDay").val(birthday.getDate());
 	  $("#id_email").val(response.email);
+	  $("#id_fbId").val(response.id);
 
 	  $("#newUserForm").submit();
 

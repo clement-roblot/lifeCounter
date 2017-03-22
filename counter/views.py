@@ -154,9 +154,23 @@ def newUser(request):
         if newUserForm.is_valid():
             userInfo = newUserForm.cleaned_data
 
+            # easer the user already exists, or it is a facebook login
             if User.objects.filter(username=userInfo.get('email')).exists():
-                messages.error(request, "This email is already registered.")
-                return redirect('index')
+
+                if userInfo.get('fbId'):
+                    possibleUser = User.objects.get(username=userInfo.get('email'))
+                    possibleUserPreferences = get_object_or_404(Preferences, user=possibleUser)
+
+                    if (possibleUserPreferences.isFacebook == True) and (possibleUserPreferences.facebookId == userInfo.get('fbId')):
+                        login(request, possibleUser)
+                        return redirect('index')
+                    else:
+                        messages.error(request, "Nice try, but nop.")
+                        return redirect('index')
+
+                else:
+                    messages.error(request, "This email is already registered.")
+                    return redirect('index')
 
             newPassword = ''.join(random.SystemRandom().choice(string.ascii_lowercase + string.ascii_uppercase + string.digits) for _ in range(50))
 
@@ -169,10 +183,13 @@ def newUser(request):
             life = Life(user=newUser, birthDate=birthDate)
             life.save()
 
-            preferences = Preferences(user=newUser)
-            preferences.save()
+            if not userInfo.get('fbId'):
+                preferences = Preferences(user=newUser, isFacebook=False, facebookId=0)
+                sendResetPasswordEmail(request, newUser)
+            else:
+                preferences = Preferences(user=newUser, isFacebook=True, facebookId=userInfo.get('fbId'))
 
-            sendResetPasswordEmail(request, newUser)
+            preferences.save()
 
             messages.success(request, "You are now logged in, an email has been sent to " + newUser.email +".")
 

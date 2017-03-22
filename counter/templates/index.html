@@ -49,9 +49,21 @@
           <div class="columns">
               <div class="row align-middle">
                   <div class="columns">
-                    <fb:login-button scope="public_profile,email,user_birthday" onlogin="checkLoginState();"></fb:login-button>
+                    <!--<fb:login-button scope="public_profile,email,user_birthday" onlogin="checkLoginState();"></fb:login-button>-->    
+                    
+                    <div class="columns large-offset-2 medium-8 text-center">
+                        <div class="fb-login-button" data-max-rows="1" data-size="xlarge" data-show-faces="false" data-auto-logout-link="false" scope="public_profile,email,user_birthday" onlogin="checkLoginState();"></div>
+                    </div>
+
+                    <!--<div class="columns large-offset-2 medium-8 text-center"><input type="button" class="button expanded" scope="public_profile,email,user_birthday" onlogin="checkLoginState();" value="Facebook login"></div>-->
 
                     <div id="status"></div>
+                  </div>
+              </div>
+
+              <div class="row align-middle">
+                  <div class="columns">
+                    <div class="columns medium-12 text-center">or</div>
                   </div>
               </div>
 
@@ -66,7 +78,7 @@
                           </div>
 
                           <div class="row align-middle">
-                            <div class="columns medium-12 large-12">{{ newUserForm.email.errors }}{{ newUserForm.email.label_tag }}{{ newUserForm.email }}</div>
+                            <div class="columns medium-12 large-12">{{ newUserForm.email.errors }}{{ newUserForm.email.label_tag }}{{ newUserForm.email }}{{ newUserForm.fbId }}</div>
                           </div>
 
 
