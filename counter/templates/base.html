@@ -13,9 +13,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.0/js/foundation.js"></script>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.css">
-
         <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
 
         {% block headBlock %}{% endblock %}
@@ -30,15 +27,6 @@
             <button class="menu-icon dark" type="button" data-toggle></button>
           </span>
           <strong>Life counter</strong>
-
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          Background : <input id='colorpickerBackground' />
-          Top bar : <input id='colorpickerTopBar' />
-          Text : <input id='colorpickerText' />
-          back numbers : <input id='colorpickerBackNumbers' />
-          border numbers : <input id='colorpickerBorderNumbers' />
-
-
         </div>
         <div id="responsive-menu">
 
@@ -119,100 +107,6 @@
         $(document).ready(function() {
 
             $(document).foundation();
-
-
-
-
-
-            $("#colorpickerBackground").spectrum({
-              color: "#FFFFFF",
-              preferredFormat: "hex",
-              showInput: true,
-              showAlpha: false,
-              clickoutFiresChange: true,
-              showPalette: true,
-              palette: [ ],
-              showSelectionPalette: true, // true by default
-              maxSelectionSize: 10,
-
-              change: function(color){
-
-                $("body").css("background-color", color.toHexString());
-              }
-            });
-
-
-            $("#colorpickerTopBar").spectrum({
-              color: "#e6e6e6",
-              preferredFormat: "hex",
-              showInput: true,
-              showAlpha: false,
-              clickoutFiresChange: true,
-              showPalette: true,
-              palette: [ ],
-              showSelectionPalette: true, // true by default
-              maxSelectionSize: 10,
-
-              change: function(color){
-
-                $(".top-bar").css("background-color", color.toHexString());
-              }
-            });
-
-
-            $("#colorpickerText").spectrum({
-              color: "#000000",
-              preferredFormat: "hex",
-              showInput: true,
-              showAlpha: false,
-              clickoutFiresChange: true,
-              showPalette: true,
-              palette: [ ],
-              showSelectionPalette: true, // true by default
-              maxSelectionSize: 10,
-
-              change: function(color){
-
-                $("body").css("color", color.toHexString());
-                $(".num").css("color", color.toHexString());
-              }
-            });
-
-            $("#colorpickerBackNumbers").spectrum({
-              color: "#f8f8f8",
-              preferredFormat: "hex",
-              showInput: true,
-              showAlpha: false,
-              clickoutFiresChange: true,
-              showPalette: true,
-              palette: [ ],
-              showSelectionPalette: true, // true by default
-              maxSelectionSize: 10,
-
-              change: function(color){
-
-                $(".num").css("background", color.toHexString());
-              }
-            });
-
-            
-            $("#colorpickerBorderNumbers").spectrum({
-              color: "#ffffff",
-              preferredFormat: "hex",
-              showInput: true,
-              showAlpha: false,
-              clickoutFiresChange: true,
-              showPalette: true,
-              palette: [ ],
-              showSelectionPalette: true, // true by default
-              maxSelectionSize: 10,
-
-              change: function(color){
-
-                $(".num").css("border", "1px solid " + color.toHexString());
-              }
-            });
-
 
             setTimeout(function () {
               $('.callout').remove();
