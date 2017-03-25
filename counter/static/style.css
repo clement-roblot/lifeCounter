@@ -48,3 +48,10 @@
 
     z-index: 1;
 }
+
+.fp-controlArrow{
+
+    position: relative;
+    border-color: transparent #484848 !important;
+    z-index: 10;
+}
