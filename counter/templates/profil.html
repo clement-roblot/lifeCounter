@@ -50,10 +50,15 @@
                     <div class="columns"><div class="incremental-counter text-center" data-value="{{personnalCount}}"></div></div>
                 </div>
                 <br>
+                <div class="row align-middle">
+                    <div class="columns">
+                        <div class="progress" role="progressbar" tabindex="0" aria-valuenow="{{personnalCount}}" aria-valuemin="0" aria-valuetext="50 percent" aria-valuemax="27375">
+                            <div class="progress-meter"></div>
+                        </div>
+                    </div>
+                </div>
+                <br>
 
-                <!--<div class="row align-middle">
-                    <div class="columns"><h3 class="text-center">Your count</h3></div>
-                </div>-->
                 <div class="row align-middle">
                     <div class="columns"><div class="sharetastic"></div></div>
                 </div>
@@ -126,6 +131,13 @@
         $(".incremental-counter").incrementalCounter({
           "digits": 5,
         });
+
+        var pourcentageLife = (((27375-{{personnalCount}})*100)/27375);
+
+
+        $(".progress-meter").css('width', Math.round(pourcentageLife).toString() + "%");
+
+
         $('#fullpage').fullpage();
         $('.sharetastic').sharetastic({
 
