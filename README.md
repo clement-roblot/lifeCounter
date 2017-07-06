@@ -1,4 +1,12 @@
+# Introduction
+This website will simply ask for your birthday and calculate the number of days you still got to live in your life. Reminding you everyday to use those days well, and in a meaning-full manner.
 
+# Install
+sudo apt-get install python-dev python3-dev
+sudo apt-get install libmysqlclient-dev
+
+
+# Random infos
 
 CDN used to fetch the libraries : https://cdnjs.com/libraries/foundation
 
@@ -17,7 +25,5 @@ graph api : https://github.com/mobolic/facebook-sdk
 share buttons : https://github.com/dahliacreative/sharetastic
 
 
-install :
-sudo apt-get install python-dev python3-dev
-sudo apt-get install libmysqlclient-dev
+
 
